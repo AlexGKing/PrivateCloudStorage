@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="PrivateCloudStorage"
+  id="myeclipse.1373943898437"
+  context-root="/PrivateCloudStorage"
+  j2ee-spec="6.0"
+  archive="PrivateCloudStorage.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+
