@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=gbk"/>
+	<title>jQuery funkyUI plugin</title>
+	
+<script type="text/javascript" src="modalDialog/jquery-1.2.6.js"></script>
+<script type="text/javascript" src="modalDialog/jquery.funkyUI.js"></script>
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+	});
+	
+	function Block(){
+		$.funkyUI({
+			url:"folderTreeTest.jsp",
+			title:"文件目录",
+			OKEvent:okEvent,
+			css:{width:"312",height:"362"}
+		});
+	}
+	
+	function Block2(){
+		$.funkyUI({
+			showDialog:false
+		});
+	}
+	function okEvent(){
+		alert('ok被点击');
+	}
+	</script>
+	</head>
+	<body>
+<input type="button" value="click1" onclick="Block()" />
+<input type="button" value="确定" id="confirm" onclick="go()">
+</br>
+</body></html>

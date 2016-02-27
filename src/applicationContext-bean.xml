@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+		>
+	
+	 <!-- 用户dao -->
+	<bean id="userDao" class="alexking.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>                                  
+	
+	<!--用户Service -->
+	<bean id="userService" class="alexking.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<!-- DeleteFile Bean -->
+	<bean id="deleteFile" class="alexking.common.DeleteFile">
+	</bean>
+	
+	<!-- HdfsUtil Bean -->
+	 <bean id="hdfsUtil" class="alexking.common.HdfsUtil">
+	</bean>
+	
+	
+	 <!-- FileInfo dao -->
+	<bean id="fileInfoDao" class="alexking.dao.impl.FileInfoDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!--FileInfoService -->
+	<bean id="fileInfoService" class="alexking.service.impl.FileInfoServiceImpl">
+		<property name="fileInfoDao" ref="fileInfoDao" />
+	</bean>
+	
+	<!-- 用户action -->
+    <bean id="userAction" class="alexking.action.UserAction">
+    	<property name="userService" ref="userService" />
+    	<property name="fileInfoService" ref="fileInfoService" />
+    	<property name="hdfsUtil" ref="hdfsUtil" />
+    </bean>
+    
+
+  	<!-- 文件上传action版本1 -->
+    <bean id="uploadFileAction" class="alexking.action.UploadFileAction">
+    <property name="fileInfoService" ref="fileInfoService" />
+    <property name="userService" ref="userService" />
+    <property name="hdfsUtil" ref="hdfsUtil" />
+    </bean>
+    
+    
+    
+    <!--群组Dao -->
+    <bean id="groupDao" class="alexking.dao.impl.GroupDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--群组Service -->
+	<bean id="groupService" class="alexking.service.impl.GroupServiceImpl">
+		<property name="groupDao" ref="groupDao" />
+	</bean>
+	
+
+	
+	
+	    <!--GroupUsers Dao -->
+    <bean id="groupUsersDao" class="alexking.dao.impl.GroupUsersDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--GroupUsers Service -->
+	<bean id="groupUsersService" class="alexking.service.impl.GroupUsersServiceImpl">
+		<property name="groupUsersDao" ref="groupUsersDao" />
+	</bean>
+	
+	
+	    <!--GroupAdmins Dao -->
+    <bean id="groupAdminsDao" class="alexking.dao.impl.GroupAdminsDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--GroupAdmins Service -->
+	<bean id="groupAdminsService" class="alexking.service.impl.GroupAdminsServiceImpl">
+		<property name="groupAdminsDao" ref="groupAdminsDao" />
+	</bean>
+    
+        <!--ShareFile Dao -->
+    <bean id="shareFileDao" class="alexking.dao.impl.ShareFileDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!--ShareFile Service -->
+	<bean id="shareFileService" class="alexking.service.impl.ShareFileServiceImpl">
+		<property name="shareFileDao" ref="shareFileDao" />
+	</bean>
+	
+	 <!-- Group Action -->
+    <bean id="groupAction" class="alexking.action.GroupAction">
+    <property name="groupService" ref="groupService" />
+    <property name="groupUsersService" ref="groupUsersService" />
+    <property name="groupAdminsService" ref="groupAdminsService" />
+    <property name="shareFileService" ref="shareFileService" />
+     <property name="fileInfoService" ref="fileInfoService" />
+    <property name="hdfsUtil" ref="hdfsUtil" />
+    </bean>
+	
+ </beans>

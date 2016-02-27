@@ -1,0 +1,139 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>layer-更懂你的web弹窗解决方案</title>
+</head>
+<script src="http://res.xiami.net/pc/lay/lib.js"></script>
+<script src="layer/layer.min.js"></script>
+<style>
+html{background-color:#E3E3E3; font-size:14px; color:#000; font-family:'微软雅黑'}
+a,a:hover{ text-decoration:none;}
+
+pre{font-family:'微软雅黑'}
+.box{padding:20px; background-color:#fff; margin:50px 100px; border-radius:5px;}
+.box a{padding-right:15px;}
+#about_hide{display:none}
+.layer_text{background-color:#fff; padding:20px;}
+.layer_text p{margin-bottom: 10px; text-indent: 2em; line-height: 23px;}
+.button{display:inline-block; *display:inline; *zoom:1; line-height:30px; padding:0 20px; background-color:#56B4DC; color:#fff; font-size:14px; border-radius:3px; cursor:pointer; font-weight:normal;}
+
+.juan{width:600px; height:480px; padding:10px; text-align:center;}
+.juan p{line-height:23px;}
+.juan p a{font-size:14px;}
+.juanGo, .juanLu{display:inline-block; *display:inline; *zoom:1; margin-right:10px;  line-height:30px; padding:0 15px;}
+.juanGo{border:1px solid #F67600; background-color:#FFA100; color:#fff;}
+.juanGo:hover{background-color:#FFB12F; color:#fff;}
+.juanLu{border:1px solid #B3B3B3; padding:0 20px; background-color:#FDFDFD; color:#595959;}
+.juanLu:hover{border:1px solid #888;}
+
+</style>
+<body>
+<div class="box">
+<pre>
+ @Name : layer v<script>document.write(layer.v)</script> 弹层组件说明
+ @author: 贤心
+ @QQ群：176047238(一群)、218604143(若一群已满，可加此群)
+ @Copyright: Sentsin Xu(贤心)
+ 
+ @blog: <a href="http://sentsin.com" target="_blank">http://sentsin.com</a>
+ @微博：<a href="http://weibo.com/SentsinXu"  target="_blank">http://weibo.com/SentsinXu</a>
+ @官网说明：<a href="http://sentsin.com/jquery/layer"  target="_blank">http://sentsin.com/jquery/layer</a>
+ @赞助layer:<a href="https://me.alipay.com/sentsin"  target="_blank">https://me.alipay.com/sentsin</a>
+
+
+【注意事项】
+一、使用时，请将layer整个文件夹放置你站点的任何一个目录，layer.js 开发版，layer.min.js 压缩版，引入其中一个即可。，css等其它文件无需引入。
+二、如果您的js引入是通过合并处理或者您不想采用layer自动获取的绝对路径，您需要打开layer.js 或者 layer.min.js 去配置相对路径url。（默认采用自动获取layer.js所在的路径）
+三、jquery必须为1.8或1.8以上版本（原因，更小，性能更好，且新版layer使用了部分jq1.8的特性），下载包里的jquery即为1.8.2下载地址
+四、更多使用说明与演示（demo），请参见layer官网。
+五、所有bug或建议，可点击官网的“建议反馈”一栏。获取更多经验分享，建议加群。
+六、layer永久免费，可应用于任何类型的web平台（违法站除外），使用时请务必保留来源。版权最终解释权：贤心。
+</pre>
+</div>
+
+<div id="about_hide">
+<div class="layer_text">
+<h2>一些唠叨</h2>
+<p><i>layer</i>，一个可以让你想到即可做到的<i>web</i>弹窗（层）解决方案（js组件），作者贤心（菜鸟级前端攻城师）。<i>layer</i>侧重于用户灵活的自定义，为不同人的使用习惯提供动力。其意义在于，可以让您的页面拥有更丰富与便捷的操作体验，而这，您只需在调用时简单地配置相关参数，即可轻松实现。</p>
+<p>与同类弹出层组件相比，<i>layer</i>的优势明显，她尽可能地在以更少的代码展现出更强健的功能。<i>layer</i>格外注重性能的提升，采用面向对象的思想实现，在多层模式的回调处理中，具备其它多数层组件所没有的“独立不冲突” 您完全可以大可放心地在页面弹出任意数量的层，她们彼此不妨碍。当你问及她的兼容时，<i>layer</i>必须告诉你，她兼容了一切浏览器，包括古老的ie6。</p>
+<p><i>layer</i>公开了如此多的接口（api），这使得您可以DIY太多您需要的风格，尤其是页面层模式，意味着必要时您可以完全抛弃<i>layer</i>的现有皮肤，并用你的思维去勾勒她的衣着。而问题在于，我必须中止“王婆卖瓜”的陈述。因为一切的不足或友好，都需要您在使用过程中去发现。</p>
+<p>据不完全统计，截至到2013年2月1号，layer已服务于3000多家web平台（网站）。</p>
+</div>
+</div>
+
+<div class="box" style="text-align:center">
+<a href="http://sentsin.com/jquery/layer/" target="_blank">使用文档</a>
+<a href="javascript:;" id="about">关于layer</a>
+<a href="http://sentsin.com/jquery/layer/data.html" target="_blank">更新日志</a>
+<a href="http://say.sentsin.com/home-48.html" id="suggest">交流反馈</a>
+</div> 
+
+
+<style>
+.highbox{width:532px; height:380px; background:url(http://img.xiami.com/res/xiating/images/appwin/highbg.jpg) no-repeat #C3ECFE;}
+.highbox *{position:absolute;}
+.highbox #closeHighbox{ right:8px; top:8px; width:20px; height:20px; cursor:pointer;}
+.highbox #downhighbox{left:160px; bottom:58px; width:210px; height:50px; text-indent: -999em;}
+</style>
+
+<script>
+(function(){
+layer.use('extend/layer.ext.js'); //载入拓展模块
+
+layer.msg('hello,亲爱的朋友，当你看到这个的时候，意味着你已将layer下载到你的本地，并正常地运行了它。layer是一款基于web的弹窗解决方案，旨在为你的产品增强体验。——贤心 <a href="http://sentsin.com"  target="_blank">sentsin.com</a>', 5, {
+    rate: 'top',
+    type: 9,
+    shade: false
+});
+
+$('#about').on('click',function(event){
+	event.preventDefault();
+	$.layer({
+		type : 1,
+		offset : ['100px',''],
+		shade: ['','',false],
+		area : ['900px','auto'],
+		page : {dom : '#about_hide'}
+	});
+});
+
+
+$('#suggest').on('click',function(event){
+	var height = $(window).height();
+    event.preventDefault();
+	var index = $.layer({
+		type : 2,
+		fix : false,
+		shade : [0.5 , '#000' , true],
+		shadeClose : true,
+		border : [!0],
+		title : false,
+		offset : ['25px',''],
+		area : ['90%', (height - 50)+'px'],
+		iframe : {src : $(this).attr('href')}
+	});
+});
+
+})();
+
+
+
+$.layer({
+	type: 2,
+	title: false,
+	fix: false,
+	closeBtn: false,
+	shadeClose: true,
+	shade: [0.1,'#fff', true],
+	border : [5, 0.3, '#666', true],
+	offset: ['100px',''],
+	area: ['990px','500px'],
+	iframe: {src: 'http://sentsin.taobao.com/'},
+	success: function(){
+		layer.msg('点击层外任意处，可关闭该iframe层', 2, 9);
+	}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name= "struts.multipart.maxSize" value="1000000000" />
+	
+	<package name="ssh-default" extends="struts-default">
+
+	<!-- 用户 -->
+	<action name="UserAction" class="userAction">
+		<result name="successed">/index.jsp</result>
+		<result name="main">/main.jsp</result>
+		<result name="folderTreeTest">/folderTreeTest.jsp</result>
+		<result name="back">/login.jsp</result>
+		<result name="changepassword">/changepassword.jsp</result>
+		<result name="upload">/uploadifyTest.jsp</result>
+		<result name="share2mygroup">/share2mygroup.jsp</result>
+	</action>
+	<!-- 文件上传版本1 -->
+	<action name="UploadFileAction"  class="uploadFileAction">
+		<result name="success" type="redirect">UserAction!listfiles</result>
+	</action>
+	
+	<action name="uploadAction" class="alexking.action.UploadAction" method="uploadFile">
+   	</action>
+   	
+   	<action name="GroupAction" class="groupAction">
+		<result name="listAllGroups">/listAllGroups.jsp</result>
+		<result name="listMyGroups">/listMyGroups.jsp</result>
+		<result name="groupFileList">/groupFileList.jsp</result>
+		<result name="listMyShareFiles">/listMyShareFiles.jsp</result>
+		<result name="main">/main.jsp</result>
+	</action>
+ 
+	</package>
+</struts>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+				http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+				http://www.springframework.org/schema/aop 
+				http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+				http://www.springframework.org/schema/tx
+				http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+
+	<!-- 配置数据源 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/YunPan" />
+		<property name="username" value="root" />
+		<property name="password" value="123456" />
+	</bean>
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+				<prop key="show_sql">true</prop>
+			</props>
+		</property>
+		<!-- 实体类配置 -->
+		<property name="mappingResources">
+			<list>
+				<!--  用户-->
+				<value>alexking/domain/User.hbm.xml</value>
+				<value>alexking/domain/FileInfo.hbm.xml</value>
+				<value>alexking/domain/Group.hbm.xml</value>
+				<value>alexking/domain/GroupUsers.hbm.xml</value>
+				<value>alexking/domain/GroupAdmins.hbm.xml</value>
+				<value>alexking/domain/ShareFile.hbm.xml</value>
+
+			</list>
+		</property>
+	</bean>
+
+	<!-- 声明式事务 -->
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 配置事务的传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 将事务配置应用到对应的PointCut上 -->
+	<aop:config>
+		<aop:pointcut id="transactionPointCut"
+			expression="execution(* alexking.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointCut" />
+	</aop:config>
+</beans>
